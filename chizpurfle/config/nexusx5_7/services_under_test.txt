@@ -1,0 +1,11 @@
+sip
+nfc
+ethernet
+cneservice #double check
+ims
+persistent_data_block
+
+bluetooth_manager
+display.qservice
+vendor.qcom.PeripheralManager
+AtCmdFwd

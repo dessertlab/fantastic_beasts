@@ -1,0 +1,180 @@
+media.audio_flinger,/system/bin/audioserver
+media.player,/system/bin/mediaserver
+media.resource_manager,/system/bin/mediaserver
+media.mediacapture,/system/bin/mediaserver
+media.camera,/system/bin/cameraserver
+netd,/system/bin/netd
+batterystats,system_server
+appops,system_server (???)
+MultiScreen,system_server (??)
+power,system_server
+display,system_server
+media.audio_policy,/system/bin/audioserver
+media.radio,/system/bin/audioserver
+media.sound_trigger_hw,/system/bin/audioserver
+package,system_server
+otadexopt,system_server
+user,system_server (??)
+activity,system_server
+procstats,system_server (?)
+meminfo,system_server (?)
+gfxinfo,system_server (?)
+dbinfo,system_server (?)
+cpuinfo,system_server
+permission,system_server (?)
+processinfo,system_server (?)
+sensorservice,system_server
+battery,system_server
+usagestats,system_server
+webviewupdate,system_server (?)
+scheduling_policy,system_server (?)
+telephony.registry,system_server (?)
+ReactiveService,system_server (?)
+DeviceRootKeyService,system_server
+EngineeringModeService,system_server (?)
+SatsService,system_server
+media.camera.proxy,system_server
+account,system_server (?)
+content,system_server(?)
+vibrator,system_server(?)
+consumer_ir,system_server(?)
+alarm,system_server
+CustomFrequencyManagerService,system_server (?)
+HqmManagerService,system_server
+context_aware,system_server
+scontext,system_server
+tima,system_server
+knox_timakeystore_policy,system_server
+knox_ucsm_policy,system_server
+com.samsung.ucs.ucsservice,system_server (?)
+cepproxyks,system_server (?)
+emailksproxy,system_server (?)
+window,system_server (?)
+input,system_server
+vrmanager,system_server (?)
+vr,system_server (?)
+barbeam,system_server
+multiwindow,system_server (?)
+bluetooth_secure_mode_manager,system_server (?)
+pinner,system_server (?)
+rcp,system_server(?)
+input_method,system_server
+accessibility,system_server
+saccessory_manager,system_server (?)
+mDNIe,system_server
+cover,system_server
+mate_service,system_server (?)
+mount,system_server
+uimode,system_server
+lock_settings,system_server (?)
+deviceidle,system_server(?)
+device_policy,system_server(?)
+harmony_eas_service,system_server(?)
+sdp,system_server
+sdp_log,system_server
+dlp,system_server
+log_manager_service,system_server (?)
+enterprise_license_policy,system_server
+application_policy,system_server (?)
+wifi_policy,system_server(?)
+phone_restriction_policy,system_server(?)
+remoteinjection,system_server(?)
+edm_proxy,system_server(?)
+enterprise_policy,system_server(?)
+knoxcustom,system_server
+otp_service,system_server
+SEAMService,system_server
+sedenial,system_server(?)
+statusbar,system_server(?)
+clipboard,system_server(?)
+semclipboard,system_server(?)
+ABTPersistenceService,system_server
+network_management,system_server
+textservices,system_server
+network_score,system_server
+netstats,system_server
+netpolicy,system_server
+wifip2p,system_server
+wifi,system_server
+wifihs20,system_server
+wifiscanner,system_server
+rttmanager,system_server
+ethernet,system_server
+connectivity,system_server
+servicediscovery,system_server (?)
+updatelock,system_server(?)
+recovery,system_server(?)
+execute,system_server(?)
+notification,system_server
+devicestoragemonitor,system_server
+location,system_server
+country_detector,system_server (?)
+sec_location,system_server
+search,system_server
+dropbox,system_server
+wallpaper,system_server
+audio,system_server
+DockObserver,system_server
+midi,system_server
+usb,system_server
+serial,system_server
+hardware_properties,system_server
+kiesusb,system_server
+jobscheduler,system_server
+soundtrigger,system_server
+backup,system_server
+appwidget,system_server
+voiceinteraction,system_server
+SecExternalDisplayService,system_server
+diskstats,system_server
+DisplaySolution,system_server
+AAS,system_server
+spengestureservice,system_server
+CocktailBarService,system_server
+AODManagerService,system_server
+voip,system_server
+samplingprofiler,system_server
+network_time_update_service,system_server
+commontime_management,system_server
+dreams,system_server
+graphicsstats,system_server
+print,system_server
+restrictions,system_server
+media_session,system_server
+media_router,system_server
+trust,system_server
+fingerprint,system_server
+shortcut,system_server
+launcherapps,system_server
+media_projection,system_server
+imms,system_server
+mobile_payment,system_server
+gamemanager,system_server
+bluetooth_manager,system_server
+connectivity_metrics_logger,system_server
+dns_listener,system_server
+contexthub_service,system_server
+edmnativehelper,system_server
+mdm.remotedesktop,system_server
+SecurityManagerService,system_server
+sb_service,system_server
+sb_service,system_server
+smartcard_access_policy,system_server
+smartcard_browser_policy,system_server
+smartcard_email_policy,system_server
+smartcard_lockscreen_policy,system_server
+smartcard_vpn_policy,system_server
+SveService,com.sec.sve
+isub,com.android.phone
+simphonebook,com.android.phone
+iphonesubinfo,com.android.phone
+isms,com.android.phone
+phone,com.android.phone
+carrier_config,com.android.phone
+telecom,system_server
+gsmaapi,com.android.nfc
+mpos,com.android.nfc
+nfc,com.android.nfc
+android.security.keystore,keystore
+ims6,com.sec.imsservice
+sip,com.android.phone
