@@ -1,0 +1,143 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 27
+
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 27
+
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
+
+        externalNativeBuild {
+            cmake{
+                cppFlags "-no-canonical-prefixes",
+                        "-fPIC",
+                        "-ffunction-sections",
+                        "-fdata-sections",
+                        "-Wall",
+                        "-Os",
+                        "-pipe",
+                        "-g3",
+                        "-fno-stack-protector",
+                        "-fPIC",
+                        "-fPIE",
+                        "-funwind-tables",
+                        "-fno-exceptions",
+                        "-fno-rtti"
+                cFlags "-no-canonical-prefixes",
+                        "-fPIC",
+                        "-ffunction-sections",
+                        "-fdata-sections",
+                        "-Wall",
+                        "-Os",
+                        "-pipe",
+                        "-g3",
+                        "-fno-stack-protector",
+                        "-fPIC",
+                        "-fPIE",
+                        "-funwind-tables",
+                        "-fno-exceptions",
+                        "-fno-rtti"
+
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+    implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+}
+
+task assembleExternalJar (dependsOn: 'compileReleaseJavaWithJavac'){
+    doLast {
+        def dx_command = "${android.sdkDirectory}/build-tools/${android.buildToolsVersion}/dx"
+        def classes_dir = "${buildDir}/intermediates/classes/release"
+        def output_dir = new File("${buildDir}/intermediates/jar")
+        output_dir.mkdirs()
+        exec {
+            ignoreExitValue true
+            commandLine dx_command, "--dex", "--output=${output_dir}/${project.name}.jar", "${classes_dir}/"
+        }
+    }
+}
+
+task createAppProcessStarterScript {
+    doLast {
+        def dir = new File("${buildDir}/intermediates/scripts")
+        dir.mkdirs()
+        def file = new File("$dir.absolutePath/${project.name}")
+        file.createNewFile()
+        file.text= """
+export CLASSPATH=/data/local/tmp/chizpurfle.jar:/data/local/tmp/cli.jar
+trap "" HUP
+exec app_process /system/bin italiaken.fantasticbeasts.chizpurfle.Main \$@ > /data/local/tmp/chizpurfle.shell &
+"""
+    }
+
+}
+
+task assembleAppProcess (type: Copy) {
+    dependsOn 'externalNativeBuildRelease'
+    dependsOn 'assembleExternalJar'
+    dependsOn 'createAppProcessStarterScript'
+    def abi_version = android.defaultConfig.ndk.abiFilters[0]
+
+    from ("${buildDir}/intermediates/cmake/release/obj/${abi_version}") {
+        include "*.so"
+    }
+    from ("${buildDir}/intermediates/jar") {
+        include "*.jar"
+    }
+    from ("${buildDir}/intermediates/scripts"){
+        include "${project.name}"
+    }
+    from("libs/commons-cli-1.4"){
+        include "*.jar"
+    }
+
+    into "${buildDir}/outputs/app_process/"
+}
+
+task installAppProcess (dependsOn: 'assembleAppProcess'){
+
+    doLast {
+        def dir = new File("${buildDir}/outputs/app_process/")
+        dir.listFiles().each { File file ->
+            exec{
+                commandLine android.adbExecutable, "push", file, "/data/local/tmp"
+                ignoreExitValue = true
+            }
+        }
+
+        exec{
+            commandLine android.adbExecutable, "shell", "su 0 chmod 777 /data/local/tmp/${project.name}"
+            ignoreExitValue = true
+        }
+    }
+
+
+
+}
