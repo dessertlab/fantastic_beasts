@@ -74,7 +74,8 @@ dependencies {
 task assembleExternalJar (dependsOn: 'compileReleaseJavaWithJavac'){
     doLast {
         def dx_command = "${android.sdkDirectory}/build-tools/${android.buildToolsVersion}/dx"
-        def classes_dir = "${buildDir}/intermediates/classes/release"
+        //def classes_dir = "${buildDir}/intermediates/classes/release"
+        def classes_dir = "${buildDir}/intermediates/javac/release/compileReleaseJavaWithJavac/classes"
         def output_dir = new File("${buildDir}/intermediates/jar")
         output_dir.mkdirs()
         exec {
