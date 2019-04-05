@@ -52,7 +52,12 @@ public class ServiceFuzzer {
          * initialize the test executor and the test analyzer
          */
         TestExecutor testExecutor = new TestExecutor(processName, isServiceDead);
+
+	L.i("Initialized - testExecutor");
+
         BlackBoxTestAnalyzer testAnalyzer = new BlackBoxTestAnalyzer();
+
+	L.i("Initialized - testAnalyzer");
 
         /*
          * build a method caller for each (filtered) method of the service
@@ -62,12 +67,16 @@ public class ServiceFuzzer {
                         .getServiceObjectByName(serviceName, isServiceDead))
                 .createMethodCallers(new MethodCallerBuilderFuzzableMethodFilter());
 
+	L.i("Initialized - method callers");
+
 
         Queue<BlackBoxTest> queue = new ArrayDeque<>();
         for (MethodCaller methodCaller : methodCallers){
             ParametersGenerator generator = new ParametersGenerator(methodCaller.getParameterTypes());
             queue.add(new BlackBoxTest(methodCaller, generator, generator.random()));
         }
+
+	L.i("Initialized - parameters generator");
 
         // in black box maxGeneration is the number of experiment
         int numberOfExperiment = ConfigurationManager.getMaxGeneration();
