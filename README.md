@@ -51,7 +51,6 @@ adb shell
 ls /data/local/tmp
 > chizpurfle
 > chizpurfle.jar
-> chizpurfle.shell
 > cli.jar
 > libstalker-server.so
 > libchizpurfle-native.so
@@ -59,7 +58,7 @@ ls /data/local/tmp
 
 ## INIT
 
-*Chizpurfle* needs a service/process map file, which depends on the target device.  
+*Chizpurfle* needs a "service-to-process map" file, which depends on the target device.  
 This file maps each Android system service running in the device with the name of the hosting process.  
 Some known maps are in `chizpurfle/config` project folder.
 
@@ -67,24 +66,37 @@ If your device is not present in this folder, you should create your own map fil
 
 First and former, you must install [FRIDA](https://www.frida.re/) both on your workstation (client) and device (server).
 
-Run the frida server as root, and then kill the Zygote process (forcing a re-inizialization of system services).
+Run the frida server as root:
 ```bash
 adb shell
 su
 cd /data/local/tmp
 ./frida-server &
+```
+
+
+Then, run the following command on your workstation:
+```bash
+python init_scripts/create_service_pid_map.py
+```
+(If there are errors at locating the device, you can place the device ID from `adb devices` in lines 81 and 85).
+
+
+This command will instrument the Service Manager on your device, and will stay on hold.
+
+Before pressing *enter*, you should kill the Zygote process to force the re-inizialization of system services:
+```bash
+adb shell
+su
 ps | grep zygote
 >root      570  1     2132104 78644 poll_sched 7496f24b94 S zygote64
 >root      571  1     1568616 67888 poll_sched 00ed08f664 S zygote
 kill -9 570 571
 ```
-As soon as you killed zygote, run:
-```bash
-python init_scripts/create_service_pid_map.py
-```
-(Substitute line 81 and 85 with you device id, obtained by `adb devices`)
 
-Finally, when the python script ends, save the ps command output.
+Finally, press *enter* to terminate the `create_service_pid_map.py` python script.
+
+Afterwards, you should save the output of the `ps` command on the device.
 ```bash
 adb shell
 su
@@ -93,7 +105,7 @@ chmod 666 /data/local/tmp/ps.out
 exit
 adb pull /data/local/tmp/ps.out
 ```
-Now, you should have both *service_pid.map* and *ps.out* files. Thus, run:
+Now, you should have both the files *service_pid.map* and *ps.out*. Thus, run:
 ```
 bash init_scripts/create_process_service_map.sh ps.out service_pid.map
 ```
@@ -101,7 +113,6 @@ This returns the *service_process_name.map* file for your device.
 
 Once you have the map file, you have to push it on the device. Run:
 ```bash
-cp <map_file> service_process_name.map
 adb push service_process_name.map /data/local/tmp
 adb shell
 su
@@ -145,6 +156,7 @@ cat chizpurfle.shell
 > -s2,--ranking-selection                     uses a ranking selection algorithm
 > -s3,--tournament-selection                  uses a tournament selection algorithm
 > -service,--service-name <arg>               the name of the service under test
+> -method,--method-name <arg>                 the name of the method under test
 >
 >Thank you for feeding me!
 ```
