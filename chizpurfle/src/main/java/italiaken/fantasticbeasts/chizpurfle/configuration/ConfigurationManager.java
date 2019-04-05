@@ -92,6 +92,14 @@ public class ConfigurationManager {
                 .longOpt("single-call")
                 .build());
 
+        options.addOption(Option.builder("method")
+                .required(false)//true)
+                .hasArg()
+                .type(String.class)
+                .longOpt("method-name")
+                .desc("the name of the method under test")
+                .build());
+
         options.addOption(Option.builder("e")
                 .required(false)
                 .longOpt("extract")
@@ -125,6 +133,12 @@ public class ConfigurationManager {
                     printHelper(options);
                     throw new ConfigurationException("can't handle args: "+ Arrays.toString(args), e);
                 }
+
+
+            if (cmd.hasOption("method")){
+           	methodName = cmd.getOptionValue("method");
+            } 
+
 
             blackBoxType = cmd.hasOption("bb");
 
