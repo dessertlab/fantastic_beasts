@@ -44,7 +44,10 @@ Java_italiaken_fantasticbeasts_chizpurfle_instrumentation_InstrumentationManager
     if (error != NULL) {
         g_print("%s\n",error->message);
         g_print("%d\n", a);
-        g_print("Thank you");
+        g_print("Thank you\n");
+    }
+    else {
+	g_print("injector loaded\n");
     }
 
     frida_injector_close_sync(injector);
