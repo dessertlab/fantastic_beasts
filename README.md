@@ -4,9 +4,18 @@ The Fantastic Beasts Framework is a collection of tools for fuzzing the Android 
 
 The main, and for now only, tool is called **Chizpurfle**, a *gray-box* fuzzer designed to run on actual devices, with a focus on testing vendor-specific system services of Android OS. It was presented at the IEEE ISSRE 2017 conference, and received the best research paper award.  
 
-If you want to mention Chizpurfle in a research paper, please cite the following reference: 
+If you want to mention Chizpurfle in a research paper, please cite the following references:
 
 ```
+@article{cotroneo2019evolutionary,
+  title={Evolutionary Fuzzing of {Android} {OS} Vendor System Services},
+  author={Cotroneo, Domenico and Iannillo, Antonio Ken and Natella, Roberto},
+  journal={Empirical Software Engineering},
+  year={2019},
+  month={May},
+  doi={10.1007/s10664-019-09725-6}
+}
+
 @inproceedings{iannillo2017chizpurfle,
   title={Chizpurfle: A gray-box {Android} fuzzer for vendor service customizations},
   author={Iannillo, Antonio Ken and Natella, Roberto and Cotroneo, Domenico and Nita-Rotaru, Cristina},
