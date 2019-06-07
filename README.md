@@ -28,6 +28,7 @@ If you want to mention Chizpurfle in a research paper, please cite the following
   organization={IEEE}
 }
 ```
+[(GitHub Pages)](https://akiannillo.github.io/publications/Iannillo_ISSRE2017.pdf)
 
 The framework includes scripts for initializing a fuzzing campaign, by creating the configuration files used by Chizpurfle.
 
