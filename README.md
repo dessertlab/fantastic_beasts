@@ -78,6 +78,7 @@ Some known maps are in `chizpurfle/config` project folder.
 If your device is not present in this folder, you should create your own map file.  
 
 First and former, you must install [FRIDA](https://www.frida.re/) both on your workstation (client) and device (server).
+(tested version [10.6.61](https://github.com/frida/frida/releases/tag/10.6.61))
 
 Run the frida server as root:
 ```bash
