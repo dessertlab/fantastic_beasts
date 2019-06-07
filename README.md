@@ -15,7 +15,10 @@ If you want to mention Chizpurfle in a research paper, please cite the following
   month={May},
   doi={10.1007/s10664-019-09725-6}
 }
+```
+[(arXiv.org)](https://arxiv.org/abs/1906.00621) [(Springer Nature SharedIt)](https://rdcu.be/bFj5F)
 
+```
 @inproceedings{iannillo2017chizpurfle,
   title={Chizpurfle: A gray-box {Android} fuzzer for vendor service customizations},
   author={Iannillo, Antonio Ken and Natella, Roberto and Cotroneo, Domenico and Nita-Rotaru, Cristina},
